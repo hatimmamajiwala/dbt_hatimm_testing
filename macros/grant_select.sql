@@ -1,4 +1,4 @@
-{% macro grant_select(schema=target.schema, usr_role='DATAENGG') %}
+{% macro grant_select(schema=target.schema, usr_role=target.role) %}
 
    {% set query %}
        GRANT USAGE ON DATABASE ANALYTICS to role {{ usr_role }}; 

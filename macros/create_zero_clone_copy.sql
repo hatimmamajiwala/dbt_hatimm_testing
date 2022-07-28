@@ -1,4 +1,4 @@
-{#* This macro is to create a clone from the DEV_FIVETRAN database inside Snowflake
+{#* This macro is to create a clone from the ANALYTICS database inside Snowflake
 
 
 
@@ -16,7 +16,7 @@
 
 *#}
 
-{%- macro developer_clone_creation (INITIALS) -%}
+{%- macro create_zero_clone_copy(INITIALS) -%}
 
 
 
@@ -26,14 +26,14 @@
 
 
 
-  CREATE OR REPLACE DATABASE DEV_ANALYTICS_{{[INITIALS]}} CLONE ANALYTICS;
+  CREATE OR REPLACE DATABASE DEV_ANALYTICS_{{INITIALS}} CLONE ANALYTICS;
 
 
 
   --Special grants for clone access
 
-  GRANT USAGE ON DATABASE DEV_ANALYTICS_{{[INITIALS]}} TO ROLE DATAENGG ;
+  GRANT USAGE ON DATABASE DEV_ANALYTICS_{{INITIALS}} TO ROLE DATAENGG ;
 
-
+  {{ log('Granting all privileges to of select and view to schema ' ~ target.schema ~ ' for the role DATAENGG for the database ANALYTICS in warehouse transforming', info=true )}}
 
 {%- endmacro %}
