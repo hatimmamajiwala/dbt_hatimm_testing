@@ -35,5 +35,7 @@ models:
   hatims_shop:
     staging:
       +materialized: view
-    marts:
+      #+pre-hook: "{{ grant_select(this) }}"
+    mart:
       +materialized: table
+      +post-hook: "{{ create_zero_clone_copy('hatimTest') }}"
