@@ -35,7 +35,7 @@ models:
   hatims_shop:
     staging:
       +materialized: view
-      +post-hook: "{{ grant_select(this) }}"
+      #+post-hook: "{{ grant_select(this) }}"
     marts:
       +materialized: table
       +post-hook: "{{ grant_select(this) }}"
